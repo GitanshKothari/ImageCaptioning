@@ -113,14 +113,14 @@ def get_loader(root, transform, batch_size=32, num_workers=0, shuffle=True, pin_
         collate_fn = lambda batch: FlickrDataset.collate_fn(batch, pad_idx)
         )
     
-    return loader
+    return loader, dataset
 
 def main():
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor()
     ])
-    dataloader = get_loader(root = r'C:\Users\gitakoth\personal_projects\ImageCaptioning\Flickr8k', transform=transform)
+    dataloader, dataset = get_loader(root = r'C:\Users\gitakoth\personal_projects\ImageCaptioning\Flickr8k', transform=transform)
 
     for _, (imgs, captions) in enumerate(dataloader):
         print(imgs.shape)
